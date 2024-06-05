@@ -1,0 +1,13 @@
+{% extends 'basic.html' %}
+{% block body %}
+    <div id="maine" class="card">
+        <h1>Successfully Converted</h1>
+        <img class="imgg" src="/static/images/audio.jpg" height="auto" width="70px" alt="audio"/>
+        <p>You can download your audio file<br/>by below download button.</p>
+        <form action="/download" method="post" class="mb-2 mx-2">
+            <input type="submit" class="btn btn-outline-dark" value="Download" id="sb"/>
+        </form>
+            <a type="button" class="btn btn-outline-dark mb-2 mx-2" href="/home">HOME</a>
+        
+    </div>
+{% endblock body %}

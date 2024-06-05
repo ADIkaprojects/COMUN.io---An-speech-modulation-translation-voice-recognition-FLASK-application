@@ -1,0 +1,32 @@
+{% extends 'basic.html' %}
+{% block title %} DATA - {% endblock title %}
+{% block body %}
+<div class="container my-3 dataa">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.NO</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">password</th>
+          <th scope="col">Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for login in info %}
+          <th scope="row">{{loop.index}}</th>
+          <td>{{login.email}}</td>
+          <td>{{login.password}}</td>
+          <td>{{login.date}}</td>
+          <td>
+              <a href="/delete/{{login.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">DELETE</button>          
+              <a href="/update/{{login.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">UPDATE</button>
+          </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock body %}

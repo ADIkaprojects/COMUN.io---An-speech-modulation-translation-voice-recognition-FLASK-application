@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" class="imgg" href="/static/images/audio.jpg" style="border-radius: 50%;"/>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=6AqfGK6s"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/index.css" />
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+    <title> {% block title %} {% endblock title %}  comun.io</title>
+</head>
+
+<body>
+  {% block login %}
+    
+  {% endblock login %}
+    <div class="header">  
+        <div class="header__logo mx-3">
+        <a href="/home">
+          <img src="../static/images/comunio.png" alt="COMUN.IO" height='auto' width="100px" >
+        </a>
+        </div>
+        <nav class="navbar">
+          <ul class="navbar__menu">
+            <li class="navbar__item">
+              <a href="/home" class="navbar__link"><i data-feather="home"></i><span>Home</span> </a>
+            </li>
+            <li class="navbar__item">
+              <a href="/speech" class="navbar__link"><i data-feather="message-square"></i><span>Speech</span></a>        
+            </li>
+            <li class="navbar__item">
+              <a href="/trans" class="navbar__link"><i data-feather="users"></i><span>Translate</span></a>        
+            </li>
+            <li class="navbar__item">
+              <a href="/about" class="navbar__link"><i data-feather="archive"></i><span>About</span></a>        
+            </li>
+            <li class="navbar__item">
+              <a href="/logout" class="navbar__link logout"><i data-feather="archive"></i><span>Log-Out</span></a>        
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="blob"></div>
+      <div class="blob2"></div>
+      <div style="display: flex; flex-direction: row-reverse;">
+      <div class="blob2"></div>
+      </div>
+    
+    {% block body %}
+    
+    {% endblock body %}
+    </body>
+    </script>
+    
+    </html>

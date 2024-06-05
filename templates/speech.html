@@ -1,0 +1,39 @@
+{% extends 'basic.html' %}
+{% block title %} SPEECH - {% endblock title %}
+{% block body %}
+
+{%if error %}
+<div class="alert alert-danger container my-5" style="height: auto; width: 300px;" >
+    {{error}}
+</div>
+{% endif %}
+
+{%if error2 %}
+
+<div class="alert alert-danger container my-5" style="height: auto; width: 380px;">
+    {{error2}}
+</div>
+{% endif %}
+<div class="card">
+    <div id="container-fluid">
+        <h1 class="my-3">Upload New File</h1>
+        <h6>PLEASE USE ONLY PCM WAV, AIFF/AIFF-C, or Native FLAC  Audio Files.</h6><br/>
+        <!-- Progress bar -->
+        <div>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" class="my-3 mx-2"/>
+            <br>
+            <input type="submit" id="submitButton" value="Transcribe"/>
+        </form>
+        </div>
+        {% if transcript != "" %}
+            <div id="speechTranscriptContainer">
+                <h1>Transcript</h1>
+                <p id="speechText">{{ transcript }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock body %}

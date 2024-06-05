@@ -1,0 +1,80 @@
+{% extends 'basic.html' %}
+{% block title %} TRANSLATE - {% endblock title %}
+{% block body %}
+
+<div class="container-fluid mt-3">
+    <div class="card">
+        <h2 class="text-center mb-2 mt-4">Translator</h2>
+        <div class="card-body">
+
+            <form action="/translate" method="POST">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="source-language-select" name="source_language">
+                        {% for code, name in source_languages %}
+                            <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <span ><i class="material-icons mx-2">arrow_forward</i></span>
+                    </div>
+                    <select class="custom-select" id="target-language-select" name="target_language">
+                        {% for code, name in target_languages %}
+                            <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" id="text-to-translate" name="text" rows="3" placeholder="Enter text to translate"></textarea>
+                </div>
+
+                <div class="form-group my-2">
+                    <label for="translated-text">Translated text:</label>
+                </div>
+
+                <div id="snippet-container">
+                    <pre id="snippet"></pre>
+                    <span class="btn btn-secondary mx-2 my-2" style="border: 1px solid black;" id="pronounce-button">
+                        <img src="../static/images/speaker.png" alt="Speak" width="50px" height="auto"/> 
+                    <i class="bi bi-volume-up"></i></span>
+                    <button type="button" class="btn btn-primary mx-2 my-2" style="border: 1px solid black; width: 5rem; height: 4rem;" id="copy-button"> COPY <i class="bi bi-clipboard"></i></button>
+                    <button type="submit" class="btn btn-success mx-2 my-2" style="border: 1px solid black; width: 6rem; height: 4rem;"  id="translate-button">Translate</button>
+                </div>
+
+                
+            </form> 
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("translate-button").addEventListener("click", function(event) {
+        event.preventDefault();
+        const form = event.target.form;
+        const formData = new FormData(form);
+
+        fetch('/translate', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("snippet").textContent = data.translation;
+            })
+            .catch(error => console.error("Error:", error));
+    });
+
+    document.getElementById("pronounce-button").addEventListener("click", function() {
+        const textToSpeak = document.getElementById("snippet").textContent;
+        responsiveVoice.speak(textToSpeak, 'UK English Female', { delay: 0 });
+    });
+
+    document.getElementById("copy-button").addEventListener("click", function() {
+        const snippetText = document.getElementById("snippet").textContent;
+        navigator.clipboard.writeText(snippetText)
+            .then(() => alert("Text copied to clipboard!"))
+            .catch(err => console.error("Failed to copy text:", err));
+    });
+</script>
+
+{% endblock body %} 
